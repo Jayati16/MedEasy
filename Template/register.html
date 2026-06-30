@@ -1,0 +1,178 @@
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style1.css' %}">
+<style>
+
+body {
+    background-image: url("{% static 'assets/img/hospital_doodle.png' %}"); /* Replace with your image path */
+    background-size: cover; /* Ensure the background covers the whole page */
+    background-repeat: no-repeat; /* Prevent tiling of the background */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep the background fixed while scrolling */
+  }
+
+  main {
+    background-color: rgba(255, 255, 255, 0.8); /* Add a white overlay for better readability */
+    border-radius: 8px; /* Slightly round the corners */
+    padding: 20px; /* Add padding to the main content */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  }
+
+
+  /* Style for email button */
+  .email-button {
+    margin-top: 5px;
+    background-color: #1977CA;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .email-button:hover {
+    background-color: #155d8e;
+  }
+
+  /* Overlay styles */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay.active {
+    display: flex;
+  }
+
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main>
+  <div id="hero"></div>
+  <div class="container">
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10 d-flex align-items-center justify-content-center">
+            <!-- Square Box -->
+            <div class="card shadow-lg border-0" style="width: 100%; max-width: 500px;">
+              <div class="card-body p-4">
+                <div class="text-center mb-4">
+                  <h5 class="card-title fs-4">Create an Account</h5>
+                  <p class="small">Enter your personal details to create an account</p>
+                </div>
+
+                {% if messages %}
+                <div class="alert alert-info">
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if form %}
+                <!-- Form Layout with Grid -->
+                <form method="post" class="row g-3 needs-validation" style="color: #1977CA !important;" novalidate>
+                  {% csrf_token %}
+                
+                  {% for field in form %}
+                    <div class="col-md-6 form-group">
+                      <label class="form-label" for="{{ field.id_for_label }}">
+                        {% if field.name == "password1" %}
+                          Password
+                        {% elif field.name == "password2" %}
+                          Confirm Password
+                        {% elif field.name == "adhhar_no" %}
+                          Aadhaar Number
+                        {% elif field.name == "phone_no" %}
+                          Phone Number
+                        {% elif field.name == "otp" %}
+                          Enter OTP
+                        {% else %}
+                          {{ field.label }}
+                        {% endif %}
+                      </label>
+                
+                      <!-- Render the field -->
+                      {{ field }}
+                
+                      {% if field.name == "email" %}
+                        <!-- OTP Button next to email field -->
+                        <button type="button" id="sendOtpButton" class="email-button">Verify Email</button>
+                      {% endif %}
+                
+                      <!-- Error messages -->
+                      {% if field.errors %}
+                        <div class="error-message">
+                          {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                
+                  <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                  </div>
+                </form>
+                
+                {% endif %}
+
+                <div class="text-center mt-3">
+                  <p class="small mb-0">Already have an account? <a href="{% url 'log_in' %}">Log in</a></p>
+                </div>
+              </div>
+            </div> <!-- End Card -->
+          </div> <!-- End Column -->
+        </div> <!-- End Row -->
+      </div> <!-- End Container -->
+    </section>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay">
+    <div class="spinner"></div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+<script>
+  document.getElementById("sendOtpButton").addEventListener("click", function() {
+    // Show overlay
+    const overlay = document.getElementById("overlay");
+    overlay.classList.add("active");
+
+    // Simulate async operation (e.g., sending OTP via AJAX)
+    setTimeout(() => {
+      overlay.classList.remove("active"); // Hide overlay after the operation
+    }, 3000); // Replace with actual AJAX success callback
+  });
+</script>
+{% endblock %}

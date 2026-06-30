@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedEasy</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+  
+    {% block css %}
+
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+    <!-- Vendor CSS Files -->
+  <!-- <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet"> -->
+    
+
+    <script src="https://kit.fontawesome.com/7763d0ea4c.js" crossorigin="anonymous"></script>
+    {% comment %} Javascript files {% endcomment %}
+    
+</head>
+<body data-aos-easing="ease-in-out" data-aos-duration="600" data-aos-delay="0">
+    <div class="header sticky-top">
+        <nav class="navbar navbar-expand-lg">
+                {% block nav %}
+                
+                {% endblock nav %}
+        </nav>
+    </div>
+    
+{% block content %}
+
+{% endblock %}
+
+  {% comment %} Footer Section {% endcomment %}
+  <footer id="footer" class="footer light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="{% url 'authorization:home' %}" class="logo d-flex align-items-center" style="font-size: 20px; text-decoration: none;">
+            <span class="sitename">MedEasy</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>123 Health Street</p>
+            <p>City, State, 12345</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+1 123 456 7890</span></p>
+            <p><strong>Email:</strong> <span>contact@medeasy.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="{% url 'authorization:home' %}">Home</a></li>
+            <li><a href="{% url 'authorization:home' %}">About Us</a></li>
+            <li><a href="{% url 'authorization:home' %}">Services</a></li>
+            <li><a href="{% url 'authorization:home' %}">Terms of Service</a></li>
+            <li><a href="{% url 'authorization:home' %}">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="{% url 'authorization:home' %}">Patient Management</a></li>
+            <li><a href="{% url 'authorization:home' %}">Appointment Scheduling</a></li>
+            <li><a href="{% url 'authorization:home' %}">Medical Records</a></li>
+            <li><a href="{% url 'authorization:home' %}">Billing and Invoicing</a></li>
+            <li><a href="{% url 'authorization:home' %}">Telemedicine</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="{% url 'authorization:home' %}">Help Center</a></li>
+            <li><a href="{% url 'authorization:home' %}">FAQs</a></li>
+            <li><a href="{% url 'authorization:home' %}">Support</a></li>
+            <li><a href="{% url 'authorization:home' %}">Documentation</a></li>
+            <li><a href="{% url 'authorization:home' %}">Community</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="{% url 'authorization:home' %}">Contact Form</a></li>
+            <li><a href="{% url 'authorization:home' %}">Support Email</a></li>
+            <li><a href="{% url 'authorization:home' %}">Live Chat</a></li>
+            <li><a href="{% url 'authorization:home' %}">Phone Support</a></li>
+            <li><a href="{% url 'authorization:home' %}">Office Locations</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename" style="text-decoration: none !important;">MedEasy</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="#">Team 19</a>
+      </div>
+    </div>
+
+  </footer>
+
+
+
+  <div id="preloader"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
+    <script src="{% static 'js/script1.js' %}"></script>
+</body>
+</html>
+
+
+
